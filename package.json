@@ -7,17 +7,19 @@
     "icon": "plug",
     "description": "Description of redis-for-strapi plugin."
   },
-  "dependencies": {},
+  "dependencies": {
+    "ioredis": "^4.16.2"
+  },
   "author": {
     "name": "A Strapi developer",
-    "email": "",
-    "url": ""
+    "email": "marefati110@gmail.com",
+    "url": "https://github.com/marefati110"
   },
   "maintainers": [
     {
-      "name": "A Strapi developer",
-      "email": "",
-      "url": ""
+      "name": "Ali marefarti",
+      "email": "marefati110@gmail.com",
+      "url": "https://github.com/marefati110"
     }
   ],
   "engines": {
