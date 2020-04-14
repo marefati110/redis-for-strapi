@@ -17,7 +17,7 @@ module.exports = () => {
       db: 1,
     });
     strapi.redis = redis;
-    strapi.redis_setCashe = setCache;
+    strapi.redis_setCache = setCache;
     strapi.redis_CONFIG_URLS = URL_OF_CONFIG;
     strapi.redis_CONFIG = CONFIG;
   }

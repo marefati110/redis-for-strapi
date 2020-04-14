@@ -7,9 +7,9 @@ const getCache = async (ctx) => {
   // if (!strapi.redis_CONFIG_URLS) return false;
   if (!strapi.redis) return false;
 
-  const params = ctx.params | null;
-  const query = ctx.request.query | null;
-  const body = ctx.request.body | null;
+  // const params = ctx.params || null;
+  const query = ctx.request.query || null;
+  const body = ctx.request.body || null;
   const method = ctx.request.method;
   // remove / in end of the url
   // in request.url in middleware and contoller in diffrent some time
@@ -21,12 +21,12 @@ const getCache = async (ctx) => {
   // if (!strapi.redis_CONFIG_URLS.includes(url)) return false;
   // if (method !== strapi.redis_CONFIG.urls[url].method) return false;
 
-  const KEY = url + method + body + query + params;
+  const KEY = url + method + body + query;
   const hash = crypto.createHash('md5').update(KEY).digest('hex');
 
   let response;
   await strapi.redis.get(hash).then((res) => {
-    response = res;
+    response = JSON.parse(res);
   });
   return response;
 };
@@ -34,9 +34,9 @@ const getCache = async (ctx) => {
 const setCache = async (ctx, result, Expired = 60 * 60 * 24) => {
   if (!strapi.redis) return false;
 
-  const params = ctx.params | null;
-  const query = ctx.request.query | null;
-  const body = ctx.request.body | null;
+  // const params = ctx.params || null;
+  const query = ctx.request.query || null;
+  const body = ctx.request.body || null;
   const method = ctx.request.method;
   // remove / in end of the url
   // in request.url in middleware and contoller in diffrent some time
@@ -45,7 +45,7 @@ const setCache = async (ctx, result, Expired = 60 * 60 * 24) => {
     url = url.slice(0, url.length - 1);
   }
 
-  const KEY = url + method + body + query + params;
+  const KEY = url + method + body + query;
   const hash = crypto.createHash('md5').update(KEY).digest('hex');
 
   await strapi.redis.set(hash, JSON.stringify(result), 'EX', Expired);
