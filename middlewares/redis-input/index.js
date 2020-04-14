@@ -9,11 +9,11 @@ module.exports = (strapi) => {
     async initialize() {
       strapi.app.use(async (ctx, next) => {
         // execute function before get cache
-        await exec_befor_func();
+        exec_befor_func(ctx);
         // get cache
         const res = await getCache(ctx);
         // execute function after get cache
-        await exec_after_func();
+        exec_after_func(ctx);
         //
         if (res) {
           ctx.send(res);
