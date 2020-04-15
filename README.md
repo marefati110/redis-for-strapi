@@ -92,9 +92,9 @@ strapi.redis
 
 You can perform your functions before or after retrieving data from the redis database.
 
-***/plugins/redis-for-api/config/before.js***
+***./plugins/redis-for-strapi/config/before.js***
 
-***/plugins/redis-for-api/config/after.js***
+***./plugins/redis-for-strapi/config/after.js***
 
 Define your function and put the function name in the list (exec_befor, exec_after)
 
